@@ -16,7 +16,7 @@ public class EmpresaController<Empresa> {
 	@Autowired
 	EmpresaRepository empresaRepository;
 	
-	@GetMapping(value = "/listar")
+	@GetMapping("listar")
     public List obterEmpresa() {
 		return (List) this.empresaRepository.findAll();
 	}
