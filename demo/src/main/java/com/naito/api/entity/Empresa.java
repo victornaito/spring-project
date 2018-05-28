@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "empresa")
@@ -37,6 +39,7 @@ public class Empresa {
 	
 	private String cnpj;
 	
+	@Temporal(TemporalType.DATE)
 	private Date timestamp;
 	
 	private String usuarioInclusao;
