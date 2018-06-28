@@ -26,7 +26,12 @@ public class Empresa {
 		this.usuarioInclusao = usuarioInclusao;
 	}
 
-	@Override
+	public Empresa(Long id, String nome) {
+		this.id = id;
+		this.nome = nome;
+	}
+
+    @Override
 	public String toString() {
 		return "Empresa [id=" + id + ", nome=" + nome + ", cnpj=" + cnpj + ", timestamp=" + timestamp
 				+ ", usuarioInclusao=" + usuarioInclusao + "]";

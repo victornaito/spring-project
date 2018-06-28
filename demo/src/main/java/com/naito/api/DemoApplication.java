@@ -22,8 +22,9 @@ public class DemoApplication {
 	@Bean
     public CommandLineRunner commandLineRunner() {
 		return args -> {
-			this.empresaRepository.save(new Empresa(3L,"pao", "cnpj", "Victor"));
-			this.empresaRepository.save(new Empresa(4L,"pao", "cnpj", "Emanuel"));
+//			this.empresaRepository.save(new Empresa(3L,"pao", "cnpj", "Victor"));
+//			this.empresaRepository.save(new Empresa(4L,"pao", "cnpj", "Emanuel"));
+
 		};
 	}
 }
