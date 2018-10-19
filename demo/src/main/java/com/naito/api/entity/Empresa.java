@@ -1,14 +1,7 @@
 package com.naito.api.entity;
 
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "empresa")
@@ -77,8 +70,8 @@ public class Empresa {
 		return timestamp;
 	}
 
-	public void setTimestamp(Date date) {
-		this.timestamp = date;
+	public void setTimestamp(Date LocalDate) {
+		this.timestamp = LocalDate;
 	}
 
 	public String getUsuarioInclusao() {
@@ -96,7 +89,7 @@ public class Empresa {
 	}
 	
 	@PreUpdate
-	public void onPreUpdate() {
+	public void onPreUpLocalDate() {
 		this.setUsuarioInclusao(usuarioInclusao);
 		this.setTimestamp(new Date());
 	}

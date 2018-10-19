@@ -16,7 +16,7 @@ public class EmpresaService  {
 	EmpresaRepository empresaRepository;
 
 	public ArrayList<Empresa> obterEmpresa() {
-	return   (ArrayList<Empresa>) this.empresaRepository.findAll();
+		return (ArrayList<Empresa>) this.empresaRepository.findAll();
 	}
 
 	public ResponseEntity.BodyBuilder atualizarEmpresa(String nome, Long id) {
