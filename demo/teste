@@ -1,0 +1,10 @@
+{
+  "nome" : "Jhon",
+  "lastName" : "joao",
+  "Endereço" : {
+    "rua" : "Jhon",
+    "bairro" : "Jhon"
+  },
+  "idade" : "18",
+  "lastName" : "joao"
+}
