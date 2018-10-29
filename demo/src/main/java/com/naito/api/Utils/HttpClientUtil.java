@@ -33,33 +33,36 @@ public class HttpClientUtil {
 
     public void efetuarRequisicao() throws MalformedURLException, URISyntaxException {
 
-
         final Response response = this.client.target(new URI(URL))
                 .path("api/empresa")
                 .request(MediaType.APPLICATION_JSON)
                 .get();
 
-//        System.out.println(response.readEntity(String.class));
-//        System.out.println(response.readEntity(Empresa.class)); nao funciona
-        final InputStream inputStream = response.readEntity(InputStream.class);
+        this.responseToJson(response.readEntity(InputStream.class));
+
+    }
+
+    private List<String> responseToJson(InputStream response) {
+
         List<String> strings = new ArrayList<>();
         try {
-           strings  = IOUtils.readLines(inputStream);
+            strings = IOUtils.readLines(response);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         System.out.println(strings);
-//        final List<String> objects = Arrays.asList(response.toString());
-        this.stringToJson(strings);
+        return strings;
     }
 
+
     private void stringToJson(List<String> arrayList){
+
+        JsonGenerator generator;
 
         File file = new File("./teste");
         file.setWritable(true);
 
-        JsonGenerator generator;
         try {
             final JsonParser jsonParser = JsonParserFactory.getJsonParser();
 
@@ -67,23 +70,6 @@ public class HttpClientUtil {
                 System.out.println(jsonParser.parseList(listItem));
             }
 
-//            generator = new JsonFactory().createGenerator(file, JsonEncoding.UTF8).useDefaultPrettyPrinter();
-//            generator.writeStartObject();
-//            generator.writeObjectField("nome", "Jhon");
-//            generator.writeObjectField("lastName", "joao");
-//
-//            generator.writeObjectFieldStart("Endereço");
-//            generator.writeObjectField("rua", "Jhon");
-//            generator.writeObjectField("bairro", "Jhon");
-//            generator.writeEndObject();
-//            generator.writeObjectField("idade", "18");
-//            generator.writeObjectField("lastName", "joao");
-//            generator.writeEndObject();
-//            generator.close();
-
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         }catch (Exception e){
             System.out.println("e = " + e);
         }

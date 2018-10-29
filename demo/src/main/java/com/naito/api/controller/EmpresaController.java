@@ -1,18 +1,10 @@
 package com.naito.api.controller;
 
 import com.naito.api.service.EmpresaService;
-import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
-import org.apache.commons.codec.Charsets;
-import org.apache.http.util.CharsetUtils;
-import org.jboss.resteasy.core.Headers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.awt.*;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 @RestController
