@@ -1,10 +1,11 @@
 package com.naito.api.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Empresa {
+public class Empresa implements Serializable {
 	
 	public Empresa() {
 		super();

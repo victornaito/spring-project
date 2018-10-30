@@ -1,17 +1,27 @@
 package com.naito.api.service;
 
 import com.naito.api.entity.Empresa;
+import com.naito.api.fila.FilaProducer;
 import com.naito.api.repository.EmpresaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @Service
+@EnableAsync
 public class EmpresaService  {
-		
+
+	@Autowired
 	EmpresaRepository empresaRepository;
+
+	@Autowired
+	FilaProducer filaProducer;
 
 //	@Autowired
 //	ElasticTestRepository elasticTestRepository;
@@ -41,6 +51,21 @@ public class EmpresaService  {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
+	@Async
+	public ResponseEntity.BodyBuilder inserirEmpresaNoRabbit(String nome, Long id, String cnpj, String usuarioInclusao) {
+
+		final Empresa empresa = new Empresa(id, nome, cnpj, usuarioInclusao);
+		try {
+			filaProducer.run(String.valueOf(Arrays.asList(empresa)));
+			Thread.sleep(3000L);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (empresa != null)
+			return ResponseEntity.ok();
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 //	private List<ElasticTest> buscaClientesEnviadosPeloSigVivo() {
 //
 ////		return elasticTestRepository.buscaClientesEnviadosPeloSigVivo();
